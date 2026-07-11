@@ -56,11 +56,11 @@ public class SecurityConfig {
                 // Public auth endpoints
                 .requestMatchers("/api/auth/**").permitAll()
                 
-                // Static web resources
+                // Static web resources - only allow HTML files and static assets, not /api paths
                 .requestMatchers("/", "/index.html", "/login.html", "/register.html", "/forgot-password.html", "/reset-password.html").permitAll()
-                .requestMatchers("/css/**", "/js/**", "/favicon.ico", "/admin/**", "/student/**").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/favicon.ico").permitAll()
                 
-                // API endpoints protection
+                // API endpoints protection - must come before static resources
                 .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
                 .requestMatchers("/api/student/**").hasAuthority("ROLE_STUDENT")
                 .requestMatchers("/api/files/preview/**").authenticated()
@@ -75,3 +75,4 @@ public class SecurityConfig {
         return http.build();
     }
 }
+
