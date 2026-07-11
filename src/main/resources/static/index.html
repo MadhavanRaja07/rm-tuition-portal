@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RM TUITION CENTER</title>
+  <script>
+    const token = localStorage.getItem('rm_tuition_jwt');
+    const userStr = localStorage.getItem('rm_tuition_user');
+    
+    if (token && userStr) {
+      const user = JSON.parse(userStr);
+      if (user.role === 'ROLE_ADMIN') {
+        window.location.replace('/admin/dashboard.html');
+      } else {
+        window.location.replace('/student/dashboard.html');
+      }
+    } else {
+      window.location.replace('/login.html');
+    }
+  </script>
+</head>
+<body style="background-color: #0b0f19;">
+</body>
+</html>

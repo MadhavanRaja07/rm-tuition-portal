@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - RM TUITION CENTER</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="glass-card auth-card text-center">
+      <div class="auth-logo">
+        <h1>RM TUITION CENTER</h1>
+        <p>Your Gateway to Academic Excellence</p>
+      </div>
+      
+      <div id="alert-container"></div>
+      
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" class="input-control" placeholder="name@domain.com" required autocomplete="username">
+        </div>
+        
+        <div class="form-group">
+          <div class="flex justify-between align-center mb-4" style="margin-bottom: 0.5rem;">
+            <label for="password" style="margin-bottom: 0;">Password</label>
+            <a href="/forgot-password.html" style="color: var(--accent-violet); font-size: 0.85rem; text-decoration: none; font-weight: 500;">Forgot Password?</a>
+          </div>
+          <input type="password" id="password" class="input-control" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-full mt-4">Sign In</button>
+      </form>
+      
+      <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+        Don't have an account? <a href="/register.html" style="color: var(--accent-violet); text-decoration: none; font-weight: 600;">Register here</a>
+      </p>
+    </div>
+  </div>
+  
+  <script src="/js/shared.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

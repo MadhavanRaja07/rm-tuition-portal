@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - RM TUITION CENTER</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span>RM ADMIN</span>
+      </div>
+      
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#dashboard" class="sidebar-link active" data-tab="dashboard">
+            <svg style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin='round' stroke-width='2' d='M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z'></path></svg>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="#materials" class="sidebar-link" data-tab="materials">
+            <svg style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin='round' stroke-width='2' d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'></path></svg>
+            Materials
+          </a>
+        </li>
+        <li>
+          <a href="#quizzes" class="sidebar-link" data-tab="quizzes">
+            <svg style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin='round' stroke-width='2' d='M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01'></path></svg>
+            Quizzes
+          </a>
+        </li>
+        <li>
+          <a href="#papers" class="sidebar-link" data-tab="papers">
+            <svg style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'></path></svg>
+            Question Papers
+          </a>
+        </li>
+        <li>
+          <a href="#students" class="sidebar-link" data-tab="students">
+            <svg style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin='round' stroke-width='2' d='M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a3 3 0 11-6 0 3 3 0 016 0z'></path></svg>
+            Students
+          </a>
+        </li>
+        <li>
+          <a href="#profile" class="sidebar-link" data-tab="profile">
+            <svg style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin='round' stroke-width='2' d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'></path></svg>
+            Profile
+          </a>
+        </li>
+      </ul>
+      
+      <div class="sidebar-footer">
+        <a href="#" class="sidebar-link" id="logout-btn" style="color: var(--error);">
+          <svg style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin='round' stroke-width='2' d='M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1'></path></svg>
+          Logout
+        </a>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Navigation -->
+      <header class="top-nav">
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle">&#9776;</button>
+        <h2>RM Tuition Center</h2>
+        <div class="user-profile-badge" onclick="switchTab('profile')">
+          <img src="" alt="avatar" class="user-avatar">
+          <span>Admin</span>
+        </div>
+      </header>
+      
+      <div id="alert-container"></div>
+      
+      <!-- 1. DASHBOARD TAB -->
+      <section id="tab-dashboard" class="tab-content">
+        <h2 class="mb-4">Dashboard Overview</h2>
+        
+        <!-- Stat Cards -->
+        <div class="stats-grid">
+          <div class="glass-card stat-card violet">
+            <span class="stat-label">Total Students</span>
+            <span class="stat-value" id="stat-students">0</span>
+          </div>
+          <div class="glass-card stat-card cyan">
+            <span class="stat-label">Learning Materials</span>
+            <span class="stat-value" id="stat-materials">0</span>
+          </div>
+          <div class="glass-card stat-card pink">
+            <span class="stat-label">Total Quizzes</span>
+            <span class="stat-value" id="stat-quizzes">0</span>
+          </div>
+          <div class="glass-card stat-card">
+            <span class="stat-label">Question Papers</span>
+            <span class="stat-value" id="stat-papers">0</span>
+          </div>
+        </div>
+        
+        <h3 class="mb-4">Quick Actions</h3>
+        <div class="shortcuts-grid">
+          <div class="glass-card shortcut-btn" onclick="openAddStudentModal()">
+            <div style="background: rgba(99, 102, 241, 0.15); padding: 12px; border-radius: 50%; color: var(--accent-violet);">
+              <svg style="width:28px;height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin='round' stroke-width='2' d='M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z'></path></svg>
+            </div>
+            <span class="mt-4 font-semibold">Add Student</span>
+          </div>
+          
+          <div class="glass-card shortcut-btn" onclick="openUploadMaterialModal()">
+            <div style="background: rgba(6, 182, 212, 0.15); padding: 12px; border-radius: 50%; color: var(--accent-cyan);">
+              <svg style="width:28px;height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin='round' stroke-width='2' d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12'></path></svg>
+            </div>
+            <span class="mt-4 font-semibold">Upload Material</span>
+          </div>
+
+          <div class="glass-card shortcut-btn" onclick="openQuizGeneratorModal()">
+            <div style="background: rgba(217, 70, 239, 0.15); padding: 12px; border-radius: 50%; color: var(--accent-pink);">
+              <svg style="width:28px;height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin='round' stroke-width='2' d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'></path></svg>
+            </div>
+            <span class="mt-4 font-semibold">Generate AI Quiz</span>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 2. MATERIALS TAB -->
+      <section id="tab-materials" class="tab-content hidden">
+        <div class="flex justify-between align-center mb-4">
+          <h2>Study Materials</h2>
+          <button class="btn btn-primary" onclick="openUploadMaterialModal()">Upload PDF/Doc</button>
+        </div>
+        
+        <div class="filters-bar glass-card">
+          <div class="form-group" style="margin-bottom:0; flex-grow:1;">
+            <select id="filter-material-class" class="input-control" onchange="loadMaterials()">
+              <option value="">All Classes</option>
+              <option value="10">10th Standard</option>
+              <option value="11-all">11th – All Subjects</option>
+              <option value="11-pcm">11th – PCM</option>
+              <option value="11-pc">11th – PC</option>
+              <option value="11-maths">11th – Maths Only</option>
+              <option value="12-all">12th – All Subjects</option>
+              <option value="12-pcm">12th – PCM</option>
+              <option value="12-pc">12th – PC</option>
+              <option value="12-maths">12th – Maths Only</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0; flex-grow:1;">
+            <select id="filter-material-subject" class="input-control" onchange="loadMaterials()">
+              <option value="">All Subjects</option>
+              <option value="Tamil">Tamil</option>
+              <option value="English">English</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Physics">Physics</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Science">Science</option>
+              <option value="Social Science">Social Science</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container glass-card" style="padding:0;">
+          <table class="custom-table" id="materials-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Class</th>
+                <th>Subject</th>
+                <th>File Name</th>
+                <th>Uploaded At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      
+      <!-- 3. QUIZZES TAB -->
+      <section id="tab-quizzes" class="tab-content hidden">
+        <div class="flex justify-between align-center mb-4">
+          <h2>Quizzes & Tests</h2>
+          <div class="flex gap-2">
+            <button class="btn btn-secondary" onclick="openManualQuizModal()">Create Manually</button>
+            <button class="btn btn-primary" onclick="openQuizGeneratorModal()">AI Quiz Generator</button>
+          </div>
+        </div>
+        
+        <div class="table-container glass-card" style="padding:0;">
+          <table class="custom-table" id="quizzes-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Class</th>
+                <th>Subject</th>
+                <th>Questions</th>
+                <th>Schedule Window</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      
+      <!-- 4. PAPERS TAB -->
+      <section id="tab-papers" class="tab-content hidden">
+        <div class="flex justify-between align-center mb-4">
+          <h2>Practice Question Papers</h2>
+          <button class="btn btn-primary" onclick="openUploadPaperModal()">Upload Paper</button>
+        </div>
+
+        <div class="table-container glass-card" style="padding:0;">
+          <table class="custom-table" id="papers-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Class</th>
+                <th>Subject</th>
+                <th>File Name</th>
+                <th>Uploaded At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      
+      <!-- 5. STUDENTS TAB -->
+      <section id="tab-students" class="tab-content hidden">
+        <div class="flex justify-between align-center mb-4">
+          <h2>Registered Students</h2>
+          <button class="btn btn-primary" onclick="openAddStudentModal()">Add Student Manually</button>
+        </div>
+        
+        <div class="filters-bar glass-card">
+          <div class="form-group" style="margin-bottom:0; flex-grow:1;">
+            <select id="filter-student-class" class="input-control" onchange="loadStudents()">
+              <option value="">All Classes</option>
+              <option value="10">10th Standard</option>
+              <option value="11-all">11th – All Subjects</option>
+              <option value="11-pcm">11th – PCM</option>
+              <option value="11-pc">11th – PC</option>
+              <option value="11-maths">11th – Maths Only</option>
+              <option value="12-all">12th – All Subjects</option>
+              <option value="12-pcm">12th – PCM</option>
+              <option value="12-pc">12th – PC</option>
+              <option value="12-maths">12th – Maths Only</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container glass-card" style="padding:0;">
+          <table class="custom-table" id="students-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Class</th>
+                <th>Registered At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      
+      <!-- 6. PROFILE TAB -->
+      <section id="tab-profile" class="tab-content hidden">
+        <h2 class="mb-4">Account Settings</h2>
+        <div class="glass-card" style="max-width:600px;">
+          <div class="avatar-edit-container">
+            <img src="" id="profile-avatar-img" class="avatar-preview-lg">
+            <div>
+              <h4 class="mb-4">Profile Avatar</h4>
+              <button class="btn btn-secondary btn-sm" onclick="triggerAvatarUpload()">Upload New Image</button>
+              <input type="file" id="avatar-input" style="display:none;" accept="image/*" onchange="uploadAvatar()">
+            </div>
+          </div>
+          
+          <form id="profile-form">
+            <div class="form-group">
+              <label for="profile-name">Full Name</label>
+              <input type="text" id="profile-name" class="input-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="profile-phone">Phone Number</label>
+              <input type="text" id="profile-phone" class="input-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="profile-password">Change Password (leave empty to keep current)</label>
+              <input type="password" id="profile-password" class="input-control" placeholder="New Password">
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-4">Save Profile</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <!-- MODAL: ADD STUDENT -->
+  <div class="modal-overlay" id="modal-add-student">
+    <div class="glass-card modal-content">
+      <div class="modal-header">
+        <h3>Add Student Manually</h3>
+        <button class="modal-close" onclick="closeModal('modal-add-student')">&times;</button>
+      </div>
+      <div id="add-student-alert"></div>
+      <form id="add-student-form">
+        <div class="form-group">
+          <label for="as-name">Full Name</label>
+          <input type="text" id="as-name" class="input-control" required>
+        </div>
+        <div class="form-group">
+          <label for="as-email">Email Address</label>
+          <input type="email" id="as-email" class="input-control" required>
+        </div>
+        <div class="form-group">
+          <label for="as-phone">Phone Number</label>
+          <input type="tel" id="as-phone" class="input-control" required>
+        </div>
+        <div class="form-group">
+          <label for="as-standard">Class/Standard</label>
+          <select id="as-standard" class="input-control" required></select>
+        </div>
+        <div class="form-group">
+          <label for="as-password">Temporary Password</label>
+          <input type="text" id="as-password" class="input-control" value="Welcome@123" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full mt-4">Create Student</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: UPLOAD MATERIAL -->
+  <div class="modal-overlay" id="modal-upload-material">
+    <div class="glass-card modal-content">
+      <div class="modal-header">
+        <h3>Upload Study Material</h3>
+        <button class="modal-close" onclick="closeModal('modal-upload-material')">&times;</button>
+      </div>
+      <div id="upload-material-alert"></div>
+      <form id="upload-material-form" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="mat-class">Target Class</label>
+          <select id="mat-class" class="input-control" required></select>
+        </div>
+        <div class="form-group">
+          <label for="mat-subject">Subject</label>
+          <select id="mat-subject" class="input-control" required></select>
+        </div>
+        <div class="form-group">
+          <label for="mat-title">Material Title</label>
+          <input type="text" id="mat-title" class="input-control" placeholder="Chapter 1: Force and Laws of Motion" required>
+        </div>
+        <div class="form-group">
+          <label for="mat-file">File Document (PDF/Docx)</label>
+          <input type="file" id="mat-file" class="input-control" accept=".pdf,.docx,.doc" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full mt-4">Upload and Notify</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: UPLOAD PAPER -->
+  <div class="modal-overlay" id="modal-upload-paper">
+    <div class="glass-card modal-content">
+      <div class="modal-header">
+        <h3>Upload Question Paper</h3>
+        <button class="modal-close" onclick="closeModal('modal-upload-paper')">&times;</button>
+      </div>
+      <div id="upload-paper-alert"></div>
+      <form id="upload-paper-form" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="paper-class">Target Class</label>
+          <select id="paper-class" class="input-control" required></select>
+        </div>
+        <div class="form-group">
+          <label for="paper-subject">Subject</label>
+          <select id="paper-subject" class="input-control" required></select>
+        </div>
+        <div class="form-group">
+          <label for="paper-title">Paper Title</label>
+          <input type="text" id="paper-title" class="input-control" placeholder="CBSE Term 1 Mock Paper" required>
+        </div>
+        <div class="form-group">
+          <label for="paper-file">Question Paper File (PDF)</label>
+          <input type="file" id="paper-file" class="input-control" accept=".pdf" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full mt-4">Upload and Notify</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: AI GENERATOR QUIZ -->
+  <div class="modal-overlay" id="modal-ai-quiz">
+    <div class="glass-card modal-content" style="max-width: 650px; max-height: 90vh; overflow-y: auto;">
+      <div class="modal-header">
+        <h3>AI Quiz Question Generator</h3>
+        <button class="modal-close" onclick="closeModal('modal-ai-quiz')">&times;</button>
+      </div>
+      <div id="ai-quiz-alert"></div>
+      
+      <!-- Input Panel -->
+      <div id="ai-quiz-inputs">
+        <div class="form-group">
+          <label for="ai-class">Class/Standard</label>
+          <select id="ai-class" class="input-control" required></select>
+        </div>
+        <div class="form-group">
+          <label for="ai-subject">Subject</label>
+          <select id="ai-subject" class="input-control" required></select>
+        </div>
+        <div class="form-group">
+          <label for="ai-topic">Topic Name (e.g. Gravity, Electrostatics)</label>
+          <input type="text" id="ai-topic" class="input-control" placeholder="Electrostatics" required>
+        </div>
+        <div class="form-group">
+          <label for="ai-count">Number of Questions</label>
+          <input type="number" id="ai-count" class="input-control" min="1" max="20" value="5" required>
+        </div>
+        <button class="btn btn-primary btn-full mt-4" id="btn-generate-ai">Generate Questions</button>
+      </div>
+
+      <!-- Preview and Save Panel -->
+      <div id="ai-quiz-preview" class="hidden">
+        <div class="form-group">
+          <label for="ai-title">Quiz Title</label>
+          <input type="text" id="ai-title" class="input-control" required>
+        </div>
+        <div class="form-group">
+          <label for="ai-duration">Duration (Minutes)</label>
+          <input type="number" id="ai-duration" class="input-control" min="5" value="30" required>
+        </div>
+        <div class="form-group">
+          <label for="ai-start">Start Window</label>
+          <input type="datetime-local" id="ai-start" class="input-control" required>
+        </div>
+        <div class="form-group">
+          <label for="ai-end">End Window</label>
+          <input type="datetime-local" id="ai-end" class="input-control" required>
+        </div>
+        
+        <h4 class="mb-4 mt-4">Questions Preview</h4>
+        <div id="ai-questions-list" style="margin-bottom: 2rem;"></div>
+        
+        <div class="flex gap-2">
+          <button class="btn btn-secondary" onclick="resetAIPanel()">Back</button>
+          <button class="btn btn-primary" onclick="saveAIQuiz()">Save and Complete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: MANUAL QUIZ -->
+  <div class="modal-overlay" id="modal-manual-quiz">
+    <div class="glass-card modal-content" style="max-width: 700px; max-height: 90vh; overflow-y: auto;">
+      <div class="modal-header">
+        <h3>Create Quiz Manually</h3>
+        <button class="modal-close" onclick="closeModal('modal-manual-quiz')">&times;</button>
+      </div>
+      <div id="manual-quiz-alert"></div>
+      <form id="manual-quiz-form">
+        <div class="form-group">
+          <label for="mq-class">Class/Standard</label>
+          <select id="mq-class" class="input-control" required></select>
+        </div>
+        <div class="form-group">
+          <label for="mq-subject">Subject</label>
+          <select id="mq-subject" class="input-control" required></select>
+        </div>
+        <div class="form-group">
+          <label for="mq-title">Quiz Title</label>
+          <input type="text" id="mq-title" class="input-control" required>
+        </div>
+        <div class="form-group">
+          <label for="mq-duration">Duration (Minutes)</label>
+          <input type="number" id="mq-duration" class="input-control" min="5" value="30" required>
+        </div>
+        <div class="form-group">
+          <label for="mq-start">Start Window</label>
+          <input type="datetime-local" id="mq-start" class="input-control" required>
+        </div>
+        <div class="form-group">
+          <label for="mq-end">End Window</label>
+          <input type="datetime-local" id="mq-end" class="input-control" required>
+        </div>
+        
+        <div class="flex justify-between align-center mb-4 mt-4">
+          <h4>Questions</h4>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="addManualQuestion()">+ Add Question</button>
+        </div>
+        <div id="mq-questions-container"></div>
+        
+        <button type="submit" class="btn btn-primary btn-full mt-4">Save Quiz</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: LEADERBOARD -->
+  <div class="modal-overlay" id="modal-leaderboard">
+    <div class="glass-card modal-content" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 id="leaderboard-title">Quiz Leaderboard</h3>
+        <button class="modal-close" onclick="closeModal('modal-leaderboard')">&times;</button>
+      </div>
+      <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+        <table class="custom-table" id="leaderboard-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Student Name</th>
+              <th>Score</th>
+              <th>Percentage</th>
+              <th>Submitted At</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/shared.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
